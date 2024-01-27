@@ -7,4 +7,9 @@
 --------      ----       ------       ---------------
 ```
 * Accessible to only local network -> When hosted on phone.
-* Public access only when hosted in dedicated server.
+   * Document all steps of deployment for fault recovery.
+   * Limitation of hardware -> Manual deplyment.  
+
+
+Future Plan or roadmap:
+* Buy a dedicated system for home server deplyment.
