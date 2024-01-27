@@ -1,4 +1,4 @@
-#  Server initial setup post os install
+#  Server initial setup post os install via UserLand
 
 # Before start:
 sudo apt-get update && sudo apt-get upgrade
