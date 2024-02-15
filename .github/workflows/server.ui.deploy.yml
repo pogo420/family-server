@@ -31,7 +31,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: '**/package-lock.json'
     - name: install server ui dependencies
-    #   run: npm install
+      run: npm install
     # - name: unit test - server ui app
     #   run: npm test -- --watch=false --browsers=ChromeHeadless
     # - name: building server-ui application      
