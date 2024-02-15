@@ -7,3 +7,10 @@ UI for family server.
 
 ## To execute:
 Run this command: `python3 -m http.server 8080 -d ./server-ui/browser/`
+
+
+## To execute in container:
+```
+podman build -t server-ui:tag .
+podman run -it --rm --name ui-check -p external_port:8080 localhost/server-ui:tag
+```
