@@ -10,11 +10,13 @@ on:
     branches:  [ "master" ]
     paths:
       - server-ui/**
+      - .github/workflows/server.ui.deploy.yml
       
   pull_request:
     branches: [ "master" ]
     paths:
       - server-ui/**
+      - .github/workflows/server.ui.deploy.yml
       
 defaults:
  run:
@@ -26,11 +28,10 @@ jobs:
     
     env:
       app_name: server-ui
-      version: ${{ GITHUB_RUN_NUMBER	}}	
+      version: ${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}
       docker_username: ${{ secrets.DHUB_USERNAME }}
       docker_password: ${{ secrets.DHUB_PASSWORD }}
 
-      
     steps:
     - uses: actions/checkout@v3
     
