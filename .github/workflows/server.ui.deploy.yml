@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       app_name: server-ui
+      app_source_directory: server-ui
+      node_version: 20.10.0
       version: 0.1
       docker_username: ${{ secrets.DHUB_USERNAME }}
       docker_password: ${{ secrets.DHUB_PASSWORD }}
@@ -23,8 +25,10 @@ jobs:
     - name: Unit test and build server ui application   
       uses: actions/setup-node@v3
       with:
-        node-version: 20.10.0
+        node-version: $node_version
         cache: 'npm'
+    - name: Navigating to angular source code
+      run: cd $app_source_directory
     - name: Install dependency of angular
       run: npm install
     - name: Unit test angular application
