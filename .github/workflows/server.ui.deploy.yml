@@ -28,7 +28,7 @@ jobs:
     
     env:
       app_name: server-ui
-      version: ${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}
+      version: ${{ github.run_id }}-${{ github.run_number }}
       docker_username: ${{ secrets.DHUB_USERNAME }}
       docker_password: ${{ secrets.DHUB_PASSWORD }}
 
