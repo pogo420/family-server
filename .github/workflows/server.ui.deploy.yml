@@ -4,10 +4,6 @@
 name: server-ui deplyment
 
 on:
-  push:
-    branches: [ "master" ]
-    paths:
-      - server-ui/**
   pull_request:
     branches: [ "master" ]
     paths:
@@ -16,6 +12,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      app_name: server-ui
+      version: 0.1
+      docker_username: ${{ secrets.DHUB_USERNAME }}
+      docker_password: ${{ secrets.DHUB_PASSWORD }}
+      
     steps:
     - uses: actions/checkout@v3
     - name: Unit test and build server ui application   
@@ -29,4 +31,13 @@ jobs:
       run: npm test -- --watch=false --browsers=ChromeHeadless
     - name: Building angular application
       run: npm run build --if-present
+    - name: Test
+      if: github.event.pull_request.merged == true
+      run: echo "pull request merged"
+    # - name: Docker login
+    #   run: podman login -u $docker_username -p $docker_password
+    # - name: Build image
+    #   run: podman build -t $docker_username/$app_name:$version .
+    # - name: Pushing app image
+    #   run: podman push $docker_username/$app_name:$version
     
