@@ -16,6 +16,7 @@
 * Add user: `useradd -m server_manager`
 * Set password: `sudo passwd server_manager`
 * Change shell: `sudo usermod --shell /bin/bash server_manager`
+* Adding user for container: `useradd -r <container_user> -s /sbin/nologin`
 
 ## Remove default user:
 * `userdel -r ubuntu`
