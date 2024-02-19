@@ -1,3 +1,3 @@
 |Application|latest tag|
 |---|---|
-|server-ui| 7957038720-21|
+|server-ui| 7958735537-22|
