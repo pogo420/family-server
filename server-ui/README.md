@@ -12,8 +12,18 @@ UI for family server.
 Run this command: `python3 -m http.server 8080 -d ./server-ui/browser/`
 
 
-## To execute in container:
+## To execute in container locally:
 ```
 podman build -t server-ui:tag .
-podman run -it --rm --name ui-check -p external_port:8080 localhost/server-ui:tag
+podman run -it --rm --name server-ui -p <external_port>:8080 localhost/server-ui:tag
+```
+
+## To execute in PI4:
+```
+Build is done via actions.
+serveruitag=7917019534-14
+username=g2pfamilyserver
+podman login -u $username -p <> -v docker.io 
+podman pull $username/server-ui:$serveruitag
+podman run -it --rm --name server-ui -p <external_port>:8080 $username/server-ui:$serveruitag
 ```
