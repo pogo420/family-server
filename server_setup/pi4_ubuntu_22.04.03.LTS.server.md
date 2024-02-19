@@ -39,3 +39,6 @@
 * Connect to the pi-4 via keyboard and mmonitor.
 * Execute `sudo shutdown -h now`.
 * Unplug system.
+
+## Imporant commands:
+* checking the user of containers: `podman top -l`
