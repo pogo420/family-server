@@ -24,8 +24,8 @@ defaults:
 
 jobs:
   build:
-    # runs-on: ubuntu-latest
-    runs-on: macos-14
+    runs-on: ubuntu-latest
+    # runs-on: macos-14
     
     env:
       app_name: server-ui
@@ -35,6 +35,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - uses: pguyot/arm-runner-action@v2
     
     - name: Unit test and build server ui application   
       uses: actions/setup-node@v3
