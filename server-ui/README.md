@@ -18,12 +18,14 @@ podman build -t server-ui:tag .
 podman run -it --rm --name server-ui -p <external_port>:8080 localhost/server-ui:tag
 ```
 
-## To execute in PI4:
+## To execute in PI4(Manually):
 ```
 # Build is done via actions, serveruitag is having the latest tag
+# Adding user to run the comtainer: useradd -r server-ui -s /sbin/nologin
+# steps to execute container:
 serveruitag=<take the value from ../server_setup/application_tags.md>
 username=g2pfamilyserver
 podman login -u $username -p <> -v docker.io
 podman pull $username/server-ui:$serveruitag
-podman run -it --rm --name server-ui -p <external_port>:8080 $username/server-ui:$serveruitag
+podman run -d --user "$(id -u server-ui):$(id -g server-ui)" --rm --name server-ui -p <external_port>:8080 $username/server-ui:$serveruitag
 ```
