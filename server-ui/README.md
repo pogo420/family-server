@@ -20,10 +20,10 @@ podman run -it --rm --name server-ui -p <external_port>:8080 localhost/server-ui
 
 ## To execute in PI4:
 ```
-Build is done via actions.
-serveruitag=7917019534-14
+# Build is done via actions, serveruitag is having the latest tag
+serveruitag=<take the value from ../server_setup/application_tags.md>
 username=g2pfamilyserver
-podman login -u $username -p <> -v docker.io 
+podman login -u $username -p <> -v docker.io
 podman pull $username/server-ui:$serveruitag
 podman run -it --rm --name server-ui -p <external_port>:8080 $username/server-ui:$serveruitag
 ```
