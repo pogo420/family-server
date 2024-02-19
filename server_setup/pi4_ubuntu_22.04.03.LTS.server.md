@@ -30,6 +30,8 @@
 ## Podman Install:
 * `sudo apt-get update`
 * `sudo apt-get -y install podman`
+* Edit: `/etc/containers/registries.conf`
+* Add/Modify: `unqualified-search-registries = ["docker.io"]`
 
 
 ## Graceful shutdown:
