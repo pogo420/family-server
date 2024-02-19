@@ -57,7 +57,7 @@ jobs:
       
     - name: Build image
       if: github.event_name == 'push'
-      run: podman build -t $docker_username/$app_name:$version .
+      run: podman build --platform linux/arm64/v8 -t $docker_username/$app_name:$version .
       
     - name: Pushing app image
       if: github.event_name == 'push'
