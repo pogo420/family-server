@@ -1,8 +1,34 @@
 # Server setup steps:
 
 ## Pi-4 wifi setup:
-* Follow the answer [here](https://raspberrypi.stackexchange.com/a/113642/160536).
-
+* Follow the steps:
+   * Burn the sd card with 
+      * ubuntu: 22.04.04 LTS server
+      * OS customization: Add wifi ssid, wifi pass and enable ssh pass auth in service.
+   * Eject and insert sd card(all file indentation -> spaces; NOT TAB)
+      *  check the network-config file:
+            ```
+            version: 2
+            renderer: networkd
+            wifis:
+            wlan0:
+                dhcp4: true
+                dhcp6: true
+                optional: true
+                access-points:
+                "SSID":
+                    password: "PassPhrase"
+            ```
+        * Add anything is missing/incorrect; password is always encrypted(It won't match with real one).
+      * check the user-data file:
+        * Adding following in the end of file
+            ```
+            ##Reboot after cloud-init completes
+            power_state:
+                mode: reboot
+            ```
+    * Boot up Pi-4
+    
 ## Root password setup:
 * Switch to: `sudo su - root`
 * Change password: `passwd`
@@ -25,7 +51,7 @@
 * Edit file `/etc/ssh/sshd_config`
 * Add/Update: `PermitRootLogin  no`
 * Add/Update: `PasswordAuthentication yes`
-* Add/Update: `AllowUsers   server_manager` (Here intentation is  NOT space it's a TAB)
+* Add/Update: `AllowUsers   server_manager` (Here intentation is  NOT space, it's a TAB)
 * ssh demon restart: `sudo systemctl restart sshd`
 
 ## Podman Install:
