@@ -68,3 +68,7 @@
 
 ## Imporant commands:
 * checking the user of containers: `podman top -l`
+
+## System restart activity:
+* Do `podman ps - a` and collect all containers.
+* For all containers: `podman restart container_id`
