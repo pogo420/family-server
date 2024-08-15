@@ -60,6 +60,10 @@
 * Edit: `/etc/containers/registries.conf`
 * Add/Modify: `unqualified-search-registries = ["docker.io"]`
 
+## Sqllite Install:
+* `sudo apt update`
+* `sudo apt install sqlite3` 
+* Checking for install `sqlite3 --version`
 
 ## Graceful shutdown:
 * Connect to the pi-4 via keyboard and mmonitor.
