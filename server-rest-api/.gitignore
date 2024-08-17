@@ -1,0 +1,6 @@
+# removing cache files
+**/__pycache__/**
+__pycache__
+
+# removing env files
+.env
