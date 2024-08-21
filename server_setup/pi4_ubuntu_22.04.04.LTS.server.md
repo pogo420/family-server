@@ -65,6 +65,22 @@
 * `sudo apt install sqlite3` 
 * Checking for install `sqlite3 --version`
 
+## Nginx Install:
+* `sudo apt update`
+* `sudo apt upgrade`
+* Intall nginx: `sudo apt install nginx`
+* Check for service status: `systemctl status nginx`
+* Check the for nginx configuration: vim /etc/nginx/sites-available/default
+
+## Node Js and angular  install
+* `sudo apt update`
+* `sudo apt install nodejs`
+* `sudo apt install npm`
+* `sudo npm cache clean -f`
+* `sudo npm install -g n`
+* `sudo n stable`
+* `npm install -g @angular/cli`
+
 ## Graceful shutdown:
 * Connect to the pi-4 via keyboard and mmonitor.
 * Execute `sudo shutdown -h now`.
