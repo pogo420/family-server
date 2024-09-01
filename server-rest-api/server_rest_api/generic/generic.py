@@ -4,7 +4,7 @@ from server_rest_api.models.responses import AppInfo
 
 generic_bp = Blueprint("generic_bp", __name__)
 
-@generic_bp.route("/")
+@generic_bp.route("/version")
 def get_app_info() -> AppInfo:
     """Route for handling rest server information for clients"""
     # getting the global config
