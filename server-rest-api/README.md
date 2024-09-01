@@ -16,16 +16,16 @@ Rest api application for family server.
 
 ## Deplyment into server:
 * clone repo
-
-### Building and deploying container
-* Write the steps
+* cd `family-server/server-rest-api`
+* Build image `podman build -t server-rest-api:v1 .`
+* Executing container: `podman run -d -p 5001:5001 --name sra server-rest-api:v1`
 
 ### Ngninx related
 * edit : `/etc/nginx/sites-enabled/default`
 * Add the location:
 ```
-        location /api/ {
-                proxy_pass http://localhost:5001/;
+        location /api/docs/ {
+                proxy_pass http://localhost:5001/docs;
         }
 ```
 * Port based on the defined in source code
