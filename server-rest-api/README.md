@@ -10,6 +10,7 @@ Rest api application for family server.
 * Install depedency: `poetry install`
 * Update `.env` file.
 * Execute application: `poetry run python server_rest_api/app.py`
+* Execute application: `cd server_rest_api; poetry run flask run --port 5001`
 * Execution via `wsgi` server: `poetry run gunicorn`
 * Instead of 5001; we can use different port, check the config file: `gunicorn.conf.py`.
 
@@ -24,8 +25,21 @@ Rest api application for family server.
 * edit : `/etc/nginx/sites-enabled/default`
 * Add the location:
 ```
-        location /api/docs/ {
-                proxy_pass http://localhost:5001/docs;
+        location  /api/version {
+                proxy_pass http://localhost:5001/version;
         }
+
+        location /api/docs {
+                proxy_pass http://localhost:5001/docs/;
+        }
+
+        location /docs {
+                proxy_pass http://localhost:5001/docs/;
+        }
+
+        location /static/swagger.yaml {
+                proxy_pass http://localhost:5001/static/swagger.yaml;
+        }
+
 ```
 * Port based on the defined in source code
