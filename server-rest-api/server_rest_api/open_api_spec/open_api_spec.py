@@ -6,8 +6,9 @@ DOCS_LOCATION = '/static/swagger.yaml'
 # swagger ui configs 
 # check this link: https://github.com/swagger-api/swagger-ui/blob/HEAD/docs/usage/configuration.md for list of other configs
 swagger_config = {
-    "tryItOutEnabled": False, # disables try it out feature
-    "supportedSubmitMethods": [] # disables try it out feature
+    "app_name": "FamilyServerRestDoc",
+    # "tryItOutEnabled": False, # disables try it out feature
+    # "supportedSubmitMethods": [] # disables try it out feature
 }
 
 # swagger blueprint object

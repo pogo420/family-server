@@ -9,6 +9,10 @@ info:
     url: http://192.168.18.27/
   version: 1.0.0
 
+servers:
+  - url: http://192.168.18.27/api
+    description: Family Server
+
 tags:
   - name: rest-info
     description: dev info about rest-api
