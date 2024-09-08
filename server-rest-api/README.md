@@ -23,22 +23,21 @@ Rest api application for family server.
 
 ### Ngninx related
 * edit : `/etc/nginx/sites-enabled/default`
-* Add the location:
+* Add the locations:
 ```
-        location  /api/version {
-                proxy_pass http://localhost:5001/version;
+        # All rest server endpoints
+        location  /api/ {
+                proxy_pass http://localhost:5001/;
         }
 
-        location /api/docs {
-                proxy_pass http://localhost:5001/docs/;
-        }
-
+        # Needed by swagger ui
         location /docs {
                 proxy_pass http://localhost:5001/docs/;
         }
 
-        location /static/swagger.yaml {
-                proxy_pass http://localhost:5001/static/swagger.yaml;
+        # For static files, needed by swagger ui as well
+        location /static/ {
+                proxy_pass http://localhost:5001/static/;
         }
 
 ```
