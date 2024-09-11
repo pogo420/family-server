@@ -81,6 +81,18 @@
 * `sudo n stable`
 * `npm install -g @angular/cli`
 
+## Postgres install 
+* `sudo apt update`
+* `sudo apt upgrade`
+* `sudo apt install postgresql`
+* `sudo su postgres`
+* Go to home directory: `cd`
+* Create new user: `createuser <USERNAME> -P --interactive`
+* Go to terminal `psql`
+* create db with username `CREATE DATABASE <USERNAME>`;
+* server db: `CREATE DATABASE family_server_db`; 
+* Exit from terminal `exit`
+
 ## Graceful shutdown:
 * Connect to the pi-4 via keyboard and mmonitor.
 * Execute `sudo shutdown -h now`.
