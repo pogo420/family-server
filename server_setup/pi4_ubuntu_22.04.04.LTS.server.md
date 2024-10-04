@@ -104,3 +104,13 @@
 ## System restart activity:
 * Do `podman ps - a` and collect all containers.
 * For all containers: `podman restart container_id`
+
+## Podman container systemd 
+* Update /etc/containers/registries.conf to add localhost in `unqualified-search-registries`
+* Generating systemd unit file: `sudo podman generate systemd --new --name <container name> -f`
+* Move the file to systemd location: `sudo mv -v <unit_file> /etc/systemd/system/`
+* Reload systemd demon: `sudo systemctl daemon-reload`
+* Enable service: `sudo systemctl enable podman-restart.service`
+* Enable service: `sudo systemctl enable <SERVICE_NAME>.service`
+* Check status, it will be dead now, just reboot.
+* Reboot system: `sudo reboot`
