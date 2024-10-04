@@ -18,8 +18,8 @@ Rest api application for family server.
 ## Deplyment into server:
 * clone repo
 * cd `family-server/server-rest-api`
-* Build image `podman build -t server-rest-api:v1 .`
-* Executing container: `podman run -d -p 5001:5001 --name sra server-rest-api:v1`
+* Build image `sudo podman build -t server-rest-api:v1 .`
+* Executing container: `sudo podman run -d -p 5001:5001 --name sra server-rest-api:v1`
 
 ### Ngninx related
 * edit : `/etc/nginx/sites-enabled/default`
