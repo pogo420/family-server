@@ -16,6 +16,9 @@ servers:
 tags:
   - name: rest-info
     description: dev info about rest-api
+  - name: update-db
+    description: update database
+
 paths:
   /version:
     get:
@@ -29,7 +32,46 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AppInfo'          
+                $ref: '#/components/schemas/AppInfo'      
+  /annual-event/add:
+    post:
+      tags:
+        - update-db
+      summary: Adding a new annual event into the database
+      description: Adding a new annual event into the database
+      requestBody:
+        description: Data for adding a new event
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnnualEventPayload'
+        required: true 
+      responses:
+        '200':
+          description: Successful addition of data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnnualEventResponse'
+        '500':
+          description: Unsuccessful addition of data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+  /annual-event/delete:
+    delete:
+      tags:
+        - update-db
+      summary: Deleting an annual event from the database
+      description: Deleting an annual event from the database
+      requestBody:
+        description: Data for deleting an event
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnnualEventId'
+        required: true 
 
 components:
   schemas:
@@ -42,3 +84,74 @@ components:
         appVersion:
           type: string
           example: 1.0.1
+    AnnualEventResponse:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: "Unique id for the event"
+        eventType:
+          type: string
+          enum: ["M", "B", "D", "S"]
+          description: "M imples marriage; B implies birthday; D implies death; S implies special event"
+        eventName:
+          type: string
+          description: "Name of the event"
+        eventMonth:
+          type: integer
+          description: "Month when the event is scheduled"
+          minimum: 1
+          maximum: 12
+        eventDay:
+          type: integer
+          description: "Day when the event is scheduled"
+          minimum: 1
+          maximum: 31
+        eventComments:
+          type: string
+          description: "Additional message for comments"
+    AnnualEventId:
+      type: object
+      required:
+        - evenId
+      properties:
+        eventId:
+          type: string
+          description: "Unique id for the event"
+    AnnualEventPayload:
+      type: object
+      required:
+        - eventType
+        - eventName
+        - eventMonth
+        - eventDay
+      properties:
+        eventType:
+          type: string
+          enum: ["M", "B", "D", "S"]
+          description: "M imples marriage; B implies birthday; D implies death; S implies special event"
+        eventName:
+          type: string
+          description: "Name of the event"
+        eventMonth:
+          type: integer
+          description: "Month when the event is scheduled"
+          minimum: 1
+          maximum: 12
+        eventDay:
+          type: integer
+          description: "Day when the event is scheduled"
+          minimum: 1
+          maximum: 31
+        eventComments:
+          type: string
+          description: "Additional message for comments"
+    ServerError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "Error name"
+        errorMessage:
+          type: string
+          description: "Details of error"
