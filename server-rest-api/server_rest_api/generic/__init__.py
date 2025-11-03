@@ -1,1 +1,0 @@
-# Blueprint for generic rest server features

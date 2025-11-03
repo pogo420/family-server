@@ -1,7 +1,0 @@
-# removing cache files
-**/__pycache__
-**/*.pyc
-
-
-# removing env files
-.env

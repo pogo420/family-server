@@ -90,7 +90,7 @@
 * Create new user: `createuser <USERNAME> -P --interactive`
 * Go to terminal `psql`
 * create db with username `CREATE DATABASE <USERNAME>`;
-* server db: `CREATE DATABASE family_server_db`; 
+* server db: `CREATE DATABASE <db-name>`; 
 * Exit from terminal `exit`
 
 ## Graceful shutdown:
