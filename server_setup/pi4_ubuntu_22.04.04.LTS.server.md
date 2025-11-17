@@ -77,26 +77,17 @@
 * Check the for nginx configuration: vim /etc/nginx/sites-available/default
 * If issue seen, check different browser.
 
-## Node Js and angular  install
-* `sudo apt update`
-* `sudo apt install nodejs`
-* `sudo apt install npm`
-* `sudo npm cache clean -f`
-* `sudo npm install -g n`
-* `sudo n stable`
-* `npm install -g @angular/cli`
-
-## Postgres install 
-* `sudo apt update`
-* `sudo apt upgrade`
-* `sudo apt install postgresql`
-* `sudo su postgres`
-* Go to home directory: `cd`
-* Create new user: `createuser <USERNAME> -P --interactive`
-* Go to terminal `psql`
-* create db with username `CREATE DATABASE <USERNAME>`;
-* server db: `CREATE DATABASE <db-name>`; 
-* Exit from terminal `exit`
+## Node Js and angular install
+* Steps:
+    ```
+    sudo apt update
+    sudo apt install nodejs
+    sudo apt install npm
+    sudo npm cache clean -f
+    sudo npm install -g n
+    sudo n stable
+    npm install -g @angular/cli
+    ```
 
 ## Graceful shutdown:
 * Connect to the pi-4 via keyboard and mmonitor.
@@ -105,17 +96,3 @@
 
 ## Imporant commands:
 * checking the user of containers: `podman top -l`
-
-## System restart activity:
-* Do `podman ps - a` and collect all containers.
-* For all containers: `podman restart container_id`
-
-## Podman container systemd 
-* Update /etc/containers/registries.conf to add localhost in `unqualified-search-registries`
-* Generating systemd unit file: `sudo podman generate systemd --new --name <container name> -f`
-* Move the file to systemd location: `sudo mv -v <unit_file> /etc/systemd/system/`
-* Reload systemd demon: `sudo systemctl daemon-reload`
-* Enable service: `sudo systemctl enable podman-restart.service`
-* Enable service: `sudo systemctl enable <SERVICE_NAME>.service`
-* Check status, it will be dead now, just reboot.
-* Reboot system: `sudo reboot`

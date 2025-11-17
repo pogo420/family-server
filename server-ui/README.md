@@ -4,16 +4,22 @@ UI for family server.
 ## Deploy in server
 * clone the repo.
 * navigate to server-ui
-* Run `su - root`
-* Run `ng build`
-* Run `cp -r /home/server_manager/family-server/server-ui/dist/server-ui/browser/  /var/www/html/server-ui`
-* Edit `/etc/nginx/sites-enabled/default` for `root /var/www/html/server-ui`
-* Nginix config with angular files.
+* Execute following:
 ```
-        location / {
-                root /var/www/html/server-ui;
-                index index.html;
-                try_files $uri $uri/ =404;
-        }
+        su - root
+        npm install
+        ng build --configuration production
+        cp -r /home/server_manager/family-server/server-ui/dist/server-ui/browser/  /var/www/html/server-ui
+```
+
+* Nginix configuration changes(First time setup, no required for source changes):
+```
+        su - root
+        cd /etc/nginx/sites-available
+        cp default server-ui
+        # File server-ui from /var/www/html to root /var/www/html/server-ui
+        ln -s /etc/nginx/sites-available/server-ui /etc/nginx/sites-enabled/
+        sudo nginx -t
+        sudo systemctl reload nginx
 ```
 
