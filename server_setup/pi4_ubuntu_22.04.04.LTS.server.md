@@ -66,11 +66,16 @@
 * Checking for install `sqlite3 --version`
 
 ## Nginx Install:
-* `sudo apt update`
-* `sudo apt upgrade`
-* Intall nginx: `sudo apt install nginx`
-* Check for service status: `systemctl status nginx`
+
+* commands to install
+    ```
+    sudo apt update
+    sudo apt upgrade
+    sudo apt install nginx
+    systemctl status nginx
+    ```
 * Check the for nginx configuration: vim /etc/nginx/sites-available/default
+* If issue seen, check different browser.
 
 ## Node Js and angular  install
 * `sudo apt update`
