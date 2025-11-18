@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "server-rest"
+version = "0.1.0"
+description = "Rest server for family"
+authors = ["Arnab Mukherjee <am0072008@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.121.2"
+gunicorn = "^23.0.0"
+uvicorn = {extras = ["standard"], version = "^0.38.0"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
