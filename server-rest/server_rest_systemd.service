@@ -1,0 +1,26 @@
+# Add the content in /etc/systemd/system/server_rest.service
+
+[Unit]
+Description=Family rest server
+After=network.target
+
+[Service]
+User=server_manager
+Group=server_manager
+WorkingDirectory=/opt/server_rest
+
+# If using venv
+ExecStart=/opt/server_rest/start.sh
+
+Restart=always
+RestartSec=5
+
+# Environment variables(future usage)
+#Environment="ENV=production"
+#Environment="PORT=8000"
+
+# Gives permission to bind to lower ports etc.
+# LimitNOFILE=50000
+
+[Install]
+WantedBy=multi-user.target
