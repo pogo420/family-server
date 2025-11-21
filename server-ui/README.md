@@ -16,10 +16,27 @@ UI for family server.
 ```
         su - root
         cd /etc/nginx/sites-available
-        cp default server-ui
-        # File server-ui from /var/www/html to root /var/www/html/server-ui
-        ln -s /etc/nginx/sites-available/server-ui /etc/nginx/sites-enabled/
+        cp default server-master
+        # File server-master from /var/www/html to root /var/www/html/server-ui
+        ln -s /etc/nginx/sites-available/server-master /etc/nginx/sites-enabled/
+```
+* Reload config if configuration changes are done
+```
         sudo nginx -t
         sudo systemctl reload nginx
 ```
+* Sample nginix configuration:
+```
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
 
+        server_name _;
+
+        location / {
+                root /var/www/html/server-ui;
+                index index.html index.htm index.nginx-debian.html;
+                try_files $uri $uri/ =404;
+        }
+}
+```
