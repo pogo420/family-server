@@ -54,6 +54,16 @@
 * Add/Update: `AllowUsers   server_manager` (Here intentation is  NOT space, it's a TAB)
 * ssh demon restart: `sudo systemctl restart sshd`
 
+## Time setup:
+```
+# su to root
+# for the status of date time (NTP service has to be active)
+timedatectl
+
+# setup timezone:
+timedatectl set-timezone Asia/Kolkata
+```
+
 ## Nginx Install:
 * commands to install
     ```
@@ -76,6 +86,30 @@
     sudo n stable
     npm install -g @angular/cli
     ```
+
+# postgrest setup 
+* Steps:
+```
+sudo apt update && sudo apt upgrade -y
+sudo apt install postgresql postgresql-contrib -y
+sudo systemctl status postgresql
+pg_lsclusters # if not output execute the below command
+sudo pg_createcluster 14 main --start
+
+# change passwd
+sudo -u postgres psql
+ALTER USER postgres PASSWORD 'yourpassword';
+
+# enable passwd login:
+# Edit the file with below content
+# local   all             postgres                                md5
+# local   all             all                                     md5
+vim /etc/postgresql/14/main/pg_hba.conf
+
+# testing connection
+psql -U postgres -h localhost
+
+```
 
 ## Graceful shutdown:
 * Connect to the pi-4 via keyboard and mmonitor.
