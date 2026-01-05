@@ -1,0 +1,5 @@
+# Usage of alembic
+* Do all model changes.
+* Models must be imported in alembic/env.py 
+* poetry run alembic revision --autogenerate -m "message defining the change"
+* poetry run alembic upgrade head

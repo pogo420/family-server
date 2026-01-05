@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from server_rest.schemas.common import GenericMessage
 from server_rest.api.routes.db_test import router as db_test_router
+from server_rest.api.routes.weather import router as weather_router
 from server_rest.core.config import get_settings
 
 
@@ -14,3 +15,4 @@ def read_root():
 
 
 app.include_router(db_test_router)
+app.include_router(weather_router)
