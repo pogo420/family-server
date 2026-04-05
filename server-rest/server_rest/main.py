@@ -5,7 +5,7 @@ from server_rest.core.config import get_settings
 
 
 settings = get_settings()
-app = FastAPI()
+app = FastAPI(root_path="/api")
 
 
 @app.get("/", response_model=GenericMessage)
