@@ -6,3 +6,6 @@
 
 # Env files
 .env
+
+# wheel files
+**/dist/**
