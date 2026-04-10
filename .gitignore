@@ -9,3 +9,6 @@
 
 # wheel files
 **/dist/**
+
+# ide related
+.vscode
