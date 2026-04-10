@@ -111,6 +111,14 @@ psql -U postgres -h localhost
 
 ```
 
+# Setu up tailscale:
+* Private vpn setup for remote access.
+   * Install tailscale: `curl -fsSL https://tailscale.com/install.sh | sh`
+   * Up tailscale: `tailscale up`
+   * Open the link and authenticate in different system, as we don't have browser.
+   * Create services: `sudo systemctl enable tailscaled; sudo systemctl start tailscaled`
+ 
+
 ## Graceful shutdown:
 * Connect to the pi-4 via keyboard and mmonitor.
 * Execute `sudo shutdown -h now`.
