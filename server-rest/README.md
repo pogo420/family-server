@@ -10,20 +10,34 @@
 poetry run uvicorn server_rest.main:app --reload
 ```
 
-## For server deployment:
+## For server deployment(First time):
 
 * Locally create the wheel file via `poetry build`
 * Scp the wheel file to server `/opt/server_rest`
 * Create virtual env
 * Install wheel.
-* create the start.sh 
+* create the start.sh
 * Do the systemd service config, check the service file.
+* Create log folder.
+* Change ownership ang group of folder: `chown -R rest_user:rest_group log_folder`
+* Give 755 permission to the folder
 * Service first time setup:
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable server_rest
 sudo systemctl start server_rest
 ```
+
+## For server deployment(Recurring):
+
+* Locally create the wheel file via `poetry build`
+* Scp the wheel file to server `/opt/server_rest`
+* Activate virtual env
+* Service stop: `sudo systemctl stop server_rest`
+* uninstall old wheel: `pip uninstall server_rest`
+* Install latest wheel.
+* Service start: `sudo systemctl start server_rest`
+
 
 ## Nginix configurations(First time)
 * Nginix configuration changes(First time setup, no required for source changes):

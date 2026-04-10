@@ -1,3 +1,5 @@
+"""Logic for DB connection handling
+"""
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from server_rest.core.config import get_settings

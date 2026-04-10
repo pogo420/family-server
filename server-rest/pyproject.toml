@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "server-rest"
-version = "0.1.1"
+version = "0.1.2"
 description = "Rest server for family"
 authors = ["Arnab Mukherjee <am0072008@gmail.com>"]
 readme = "README.md"
