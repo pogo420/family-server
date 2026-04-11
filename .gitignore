@@ -12,3 +12,5 @@
 
 # ide related
 .vscode
+# logs 
+**/logs/**
