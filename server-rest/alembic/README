@@ -1,0 +1,14 @@
+# Alembic setup flow:
+
+* To create alembic folder structure(During repo setup once): `poetry run alembic init alembic`
+* Check part 1 and part 2 in `alembic/env.py` do the following.
+* Import modes inside `alembic/env.py`
+* Creating migration `poetry run alembic revision --autogenerate -m "description"`
+* Applying migration `poetry run alembic upgrade head`
+
+
+# Ongoing activities:
+* Create new models
+* Import modes inside `alembic/env.py`
+* Creating migration `poetry run alembic revision --autogenerate -m "description"`
+* Applying migration `poetry run alembic upgrade head`
