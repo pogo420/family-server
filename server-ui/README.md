@@ -1,6 +1,17 @@
 # ServerUi
 UI for family server.
 
+## Package requirements
+
+* Node and Ts
+
+  package | version
+  --|--
+  node | 20.20.2
+  typeScript | 5.9.3
+
+* Angular: 21
+
 ## Deploy in server
 * clone the repo.
 * navigate to server-ui
