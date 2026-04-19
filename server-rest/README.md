@@ -32,10 +32,12 @@ sudo systemctl start server_rest
 
 * Locally create the wheel file via `poetry build`
 * Scp the wheel file to server `/opt/server_rest`
+* Scp `alembic.ini` and `alembic` folder.
 * Activate virtual env
 * Service stop: `sudo systemctl stop server_rest`
 * uninstall old wheel: `pip uninstall server_rest`
 * Install latest wheel.
+* Execute: `alembic upgrade head`
 * Service start: `sudo systemctl start server_rest`
 
 

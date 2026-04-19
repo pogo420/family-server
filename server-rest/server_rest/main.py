@@ -1,8 +1,10 @@
+"""Main application file for the FastAPI application"""
 from fastapi import FastAPI
 import logging
 
 from server_rest.core.logging import setup_logging
 from server_rest.schemas.common import GenericMessage
+from server_rest.api.routes.event_tracker import router as event_tracker_router
 from server_rest.api.routes.db_test import router as db_test_router
 from server_rest.core.config import get_settings
 
@@ -21,4 +23,6 @@ def read_root():
     return {"message": f"Welcome to root endpoint of {settings.APP_NAME}"}
 
 
+# Include routers for different API endpoints
 app.include_router(db_test_router)
+app.include_router(event_tracker_router)
