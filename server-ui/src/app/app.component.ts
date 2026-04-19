@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterOutlet } from '@angular/router';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { EntryCommentComponent } from './components/entry-comment/entry-comment.component';
@@ -7,11 +7,10 @@ import { EntryCommentComponent } from './components/entry-comment/entry-comment.
 @Component({
     selector: 'app-root',
     imports: [
-        CommonModule,
-        RouterOutlet,
-        NavBarComponent,
-        EntryCommentComponent
-    ],
+    RouterOutlet,
+    NavBarComponent,
+    EntryCommentComponent
+],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css'
 })
