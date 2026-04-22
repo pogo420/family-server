@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Add User</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="userForm">
+    
+    <mat-form-field appearance="outline" style="width:100%">
+      <mat-label>Event Name</mat-label>
+      <input matInput formControlName="event_name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width:100%">
+      <mat-label>Event Date</mat-label>
+      <input matInput placeholder="dd" formControlName="event_date">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width:100%">
+      <mat-label>Event Month</mat-label>
+      <input matInput placeholder="mm" formControlName="event_month">
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button
+  mat-raised-button
+  color="primary"
+  [disabled]="userForm.invalid"
+  (click)="save()">Save</button>
+</mat-dialog-actions>
