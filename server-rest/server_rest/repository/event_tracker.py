@@ -82,3 +82,20 @@ def get_events_by_date(db: Session, date: EventFilter) -> list[EventTracker]:
     except Exception as e:
         logger.error(f"Error retrieving events for date {date}: {e}")
         raise
+
+
+def get_all_events(db: Session) -> list[EventTracker]:
+    """Retrieve all events from the database.
+    Args:
+        db (Session): Database session.
+    Returns:
+        list[EventTracker]: List of all events in the database.
+    Raises:
+        Exception: If there is an error during the database operation.
+    """
+    try:
+        events = db.query(EventTracker).all()
+        return events
+    except Exception as e:
+        logger.error(f"Error retrieving all events: {e}")
+        raise

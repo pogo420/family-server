@@ -7,7 +7,12 @@ from sqlalchemy.orm import Session
 from server_rest.schemas.common import GenericMessage
 from server_rest.db.database import get_db
 from server_rest.schemas.event_tracker import Event, EventFilter, EventResponse
-from server_rest.services.event_tracker import add_event_service, delete_event_service, get_events_by_date_service
+from server_rest.services.event_tracker import (
+    add_event_service,
+    delete_event_service,
+    get_all_events_service,
+    get_events_by_date_service
+)
 
 
 # Local file logger
@@ -26,6 +31,14 @@ def show_events(
 ):
     logger.info(f"Searching for events with filter: day={event_filter.day}, month={event_filter.month}")
     return get_events_by_date_service(db, event_filter)
+
+
+@router.get("/all", response_model=list[EventResponse])
+def show_all_events(
+    db: Session = Depends(get_db)
+):
+    logger.info("Retrieving all events")
+    return get_all_events_service(db)
 
 
 @router.post("/", response_model=GenericMessage)
