@@ -5,7 +5,7 @@ from server_rest.exceptions.event_tracker import EventAlreadyExistsException
 from server_rest.schemas.common import GenericMessage
 from server_rest.schemas.event_tracker import Event, EventFilter, EventResponse
 from server_rest.models.event_tracker import EventTracker
-from server_rest.repository.event_tracker import add_event, delete_event, get_events_by_date
+from server_rest.repository.event_tracker import add_event, delete_event, get_all_events, get_events_by_date
 
 
 # Local file logger
@@ -74,4 +74,24 @@ def get_events_by_date_service(db, event_filter: EventFilter) -> list[EventRespo
         ) for event in events]
     except Exception as e:
         logger.error(f"Error retrieving events for day: {event_filter.day}, month: {event_filter.month}: {e}")
+        return []
+
+
+def get_all_events_service(db) -> list[EventResponse]:
+    """Service function to retrieve all events from the database.
+    Args:
+        db: Database session.
+    Returns:
+        list[EventResponse]: A list of all events in the database.
+    """
+    try:
+        events = get_all_events(db)
+        return [EventResponse(
+            event_id=event.event_id,
+            day=event.day,
+            month=event.month,
+            event_name=event.event_name
+        ) for event in events]
+    except Exception as e:
+        logger.error(f"Error retrieving all events: {e}")
         return []
