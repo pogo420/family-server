@@ -20,7 +20,9 @@ UI for family server.
         su - root
         npm install
         ng build --configuration production
-        cp -r /home/server_manager/family-server/server-ui/dist/server-ui/browser/  /var/www/html/server-ui
+        # delete old files if present 
+        rm -rf /var/www/html/server-ui/*
+        cp -r /home/server_manager/family-server/server-ui/dist/server-ui/browser/*  /var/www/html/server-ui
 ```
 
 * Nginix configuration changes(First time setup, no required for source changes):
