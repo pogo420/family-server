@@ -1,0 +1,13 @@
+<!-- Show Latest Events Header if non empty events -->
+@if (events.length > 0) {
+ <h4><u>Latest Events</u></h4>
+}
+
+<!-- List of events for the day, if any -->
+<mat-list role="list">
+    @for (event of events; track event) {
+        <mat-list-item role="listitem">
+            - {{ event.event_name }}
+        </mat-list-item>
+    }
+</mat-list>

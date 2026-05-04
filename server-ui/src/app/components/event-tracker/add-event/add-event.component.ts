@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './add-event.component.html',
   styleUrl: './add-event.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddEventComponent {
 
