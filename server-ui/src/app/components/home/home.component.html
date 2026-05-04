@@ -1,21 +1,6 @@
-<!-- Main menu section -->
- <mat-toolbar>
-    <button matIconButton [matMenuTriggerFor]="menu">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>{{appHeader}}</span>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item [routerLink]="'/event-tracker'">
-            <mat-icon>event</mat-icon>
-            <span>{{eventTrackerMenuLabel}}</span>
-        </button>
-        <button mat-menu-item>
-            <mat-icon>currency_rupee</mat-icon>
-            <span>{{financeMenuLabel}}</span>
-        </button>
-    </mat-menu>
-</mat-toolbar>
-
-<mat-divider></mat-divider>
+<app-nav-bar></app-nav-bar>
 <!-- Welcome message section -->
 <p [innerHTML]="homePageContent"></p>
+
+<!-- Latest events section -->
+<app-show-latest></app-show-latest>

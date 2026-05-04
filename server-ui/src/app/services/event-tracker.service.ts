@@ -33,6 +33,27 @@ export class EventTrackerService {
   }
 
   /**
+   * Method to show events by date
+   * @param day Day of the month (1-31)
+   * @param month Month of the year (1-12)
+   * @returns An Observable of an array of Event objects
+   */
+  showEventByDate(day: number, month: number): Observable<Event[]> {
+    const params = new HttpParams()
+      .set('day', day)
+      .set('month', month);
+    return this.http.get<Event[]>(environment.restBaseUrl + EVENT_TRACKER, { params }).pipe(
+      map((response: any) => response.map((response: any) => ({
+        event_id: response.event_id,
+        event_name: response.event_name,
+        event_date: response.day,
+        event_month: response.month,
+      })))
+    );
+  }
+
+
+  /**
    * Service logic to delete an event by its ID
    * This method constructs the necessary parameters and sends a DELETE request to the server to remove the specified event.
    * @param eventId The ID of the event to delete
