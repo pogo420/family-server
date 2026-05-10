@@ -12,3 +12,5 @@
 * Import modes inside `alembic/env.py`
 * Creating migration `poetry run alembic revision --autogenerate -m "description"`
 * Applying migration `poetry run alembic upgrade head`
+* Undo migration `poetry run alembic downgrade -1`
+* Remove version file under version.

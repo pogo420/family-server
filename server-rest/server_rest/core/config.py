@@ -1,11 +1,13 @@
-"""Logic for config setup
-"""
+"""Logic for config setup"""
+
 from functools import lru_cache
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
     """Class for config"""
+
     APP_NAME: str
     DB_URL: str
     ENABLE_DEBUG: bool

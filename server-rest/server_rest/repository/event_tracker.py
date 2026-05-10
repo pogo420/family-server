@@ -1,20 +1,20 @@
 """Repository for EventTracker model.
 Raw SQL queries and database operations related to EventTracker can be defined here.
 """
-from sqlalchemy.orm import Session
-from typing import Optional
+
 import logging
 
-from server_rest.exceptions.event_tracker import EventAlreadyExistsException
-from server_rest.schemas.event_tracker import EventFilter
-from server_rest.models.event_tracker import EventTracker
+from sqlalchemy.orm import Session
 
+from server_rest.exceptions.event_tracker import EventAlreadyExistsException
+from server_rest.models.event_tracker import EventTracker
+from server_rest.schemas.event_tracker import EventFilter
 
 # Local file logger
 logger = logging.getLogger(__name__)
 
 
-def add_event(db: Session, event: EventTracker) -> Optional[EventTracker]:
+def add_event(db: Session, event: EventTracker) -> EventTracker | None:
     """Add a new event to the database.
     Args:
         db (Session): Database session.
@@ -34,7 +34,7 @@ def add_event(db: Session, event: EventTracker) -> Optional[EventTracker]:
         db.rollback()
         logger.error(f"Error adding event: {e}")
         if "violates unique constraint" in str(e):
-            raise EventAlreadyExistsException()
+            raise EventAlreadyExistsException() from e
         raise
 
 
@@ -74,10 +74,7 @@ def get_events_by_date(db: Session, date: EventFilter) -> list[EventTracker]:
         Exception: If there is an error during the database operation.
     """
     try:
-        events = db.query(EventTracker).filter(
-            EventTracker.day == date.day,
-            EventTracker.month == date.month
-        ).all()
+        events = db.query(EventTracker).filter(EventTracker.day == date.day, EventTracker.month == date.month).all()
         return events
     except Exception as e:
         logger.error(f"Error retrieving events for date {date}: {e}")

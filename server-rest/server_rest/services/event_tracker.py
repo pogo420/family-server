@@ -2,11 +2,10 @@ import logging
 import uuid
 
 from server_rest.exceptions.event_tracker import EventAlreadyExistsException
-from server_rest.schemas.common import GenericMessage
-from server_rest.schemas.event_tracker import Event, EventFilter, EventResponse
 from server_rest.models.event_tracker import EventTracker
 from server_rest.repository.event_tracker import add_event, delete_event, get_all_events, get_events_by_date
-
+from server_rest.schemas.common import GenericMessage
+from server_rest.schemas.event_tracker import Event, EventFilter, EventResponse
 
 # Local file logger
 logger = logging.getLogger(__name__)
@@ -22,18 +21,19 @@ def add_event_service(db, event_data: Event) -> GenericMessage:
     """
 
     event_table_row = EventTracker(
-        event_name=event_data.event_name,
-        day=event_data.day,
-        month=event_data.month,
-        event_id=uuid.uuid4().hex
+        event_name=event_data.event_name, day=event_data.day, month=event_data.month, event_id=uuid.uuid4().hex
     )
     try:
         db_response = add_event(db, event_table_row)
-        return {"message": f"Event '{db_response.event_name}' added for {db_response.day}/"
-                           f"{db_response.month}, id: {db_response.event_id}"}
+        return {
+            "message": f"Event '{db_response.event_name}' added for {db_response.day}/"
+            f"{db_response.month}, id: {db_response.event_id}"
+        }
     except EventAlreadyExistsException:
-        return {"message": f"Event already exists for day: {event_data.day}, month: {event_data.month}, "
-                           f"name: {event_data.event_name}"}
+        return {
+            "message": f"Event already exists for day: {event_data.day}, month: {event_data.month}, "
+            f"name: {event_data.event_name}"
+        }
     except Exception as e:
         return {"message": f"Error adding event: {e}"}
 
@@ -66,12 +66,10 @@ def get_events_by_date_service(db, event_filter: EventFilter) -> list[EventRespo
     """
     try:
         events = get_events_by_date(db, event_filter)
-        return [EventResponse(
-            event_id=event.event_id,
-            day=event.day,
-            month=event.month,
-            event_name=event.event_name
-        ) for event in events]
+        return [
+            EventResponse(event_id=event.event_id, day=event.day, month=event.month, event_name=event.event_name)
+            for event in events
+        ]
     except Exception as e:
         logger.error(f"Error retrieving events for day: {event_filter.day}, month: {event_filter.month}: {e}")
         return []
@@ -86,12 +84,10 @@ def get_all_events_service(db) -> list[EventResponse]:
     """
     try:
         events = get_all_events(db)
-        return [EventResponse(
-            event_id=event.event_id,
-            day=event.day,
-            month=event.month,
-            event_name=event.event_name
-        ) for event in events]
+        return [
+            EventResponse(event_id=event.event_id, day=event.day, month=event.month, event_name=event.event_name)
+            for event in events
+        ]
     except Exception as e:
         logger.error(f"Error retrieving all events: {e}")
         return []

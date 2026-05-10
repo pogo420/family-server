@@ -1,9 +1,11 @@
 """Repository layer for db connection check.
 Does RAW queries to db.
 """
+
+import logging
+
 from sqlalchemy import text
 from sqlalchemy.orm import Session
-import logging
 
 # Local file logger
 logger = logging.getLogger(__name__)

@@ -1,8 +1,8 @@
-"""Logic for logging setup
-"""
+"""Logic for logging setup"""
+
 import logging
-from logging.handlers import RotatingFileHandler
 import os
+from logging.handlers import RotatingFileHandler
 
 from server_rest.common import LOG_BACKUP_COUNT, LOG_DIR, LOG_NAME, MAX_LOG_SIZE
 
@@ -23,8 +23,8 @@ def setup_logging(enable_debug: bool):
     # File Handler (rotation by size)
     file_handler = RotatingFileHandler(
         f"{LOG_DIR}/{LOG_NAME}",
-        maxBytes=MAX_LOG_SIZE,        # Log size of each log
-        backupCount=LOG_BACKUP_COUNT  # Keep last, given counts
+        maxBytes=MAX_LOG_SIZE,  # Log size of each log
+        backupCount=LOG_BACKUP_COUNT,  # Keep last, given counts
     )
     file_handler.setFormatter(formatter)
 
