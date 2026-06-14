@@ -106,13 +106,49 @@ psql -U postgres -h localhost
 
 ```
 
-# Setu up tailscale:
+# Setup tailscale:
 * Private vpn setup for remote access.
    * Install tailscale: `curl -fsSL https://tailscale.com/install.sh | sh`
    * Up tailscale: `tailscale up`
    * Open the link and authenticate in different system, as we don't have browser.
    * Create services: `sudo systemctl enable tailscaled; sudo systemctl start tailscaled`
  
+# Setup MQTT:
+* Update all: `apt update; apt upgrade -y`
+* Install broker and client: `apt install mosquitto mosquitto-clients -y`
+* Enable broker service:
+   ```
+   systemctl enable mosquitto
+   systemctl start mosquitto
+   systemctl status mosquitto
+   ```
+* Testing broker:
+   * terminal 1: `mosquitto_sub -t test/topic`
+   * terminal 2: `mosquitto_pub -t test/topic -m "Hello MQTT"`
+* Creating user and password for MQTT:
+   * `mosquitto_passwd -c /etc/mosquitto/passwd <user_name>`
+* Configure Auth:
+   * Creating file: vim /etc/mosquitto/conf.d/auth.conf
+   * Add following cotent
+   ```
+   allow_anonymous false
+   password_file /etc/mosquitto/passwd
+
+   listener 1883
+   ```
+* setting permissions:
+   ```
+   sudo chown root:mosquitto /etc/mosquitto/passwd
+   sudo chmod 640 /etc/mosquitto/passwd
+   ```
+* Restart broker service:
+   ```
+   systemctl restart mosquitto
+   systemctl status mosquitto
+   ```
+* validate flow:
+   * `mosquitto_sub -h localhost -u <user> -P <pass> -t test/topic`
+   * `mosquitto_pub -h localhost -u <user> -P <pass> -t test/topic -m "hello world"`
 
 ## Graceful shutdown:
 * Connect to the pi-4 via keyboard and mmonitor.
