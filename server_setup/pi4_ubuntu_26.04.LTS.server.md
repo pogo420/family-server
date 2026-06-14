@@ -19,7 +19,7 @@
 * Change password: `passwd`
 * Do all setup in root.
 
-## Enable wifi:
+## Enable wifi(Ethernet recommended for main server):
 * Check wifi: `ip a`
 * wlan0 status -> DOWN
 * vim `/etc/netplan/50-cloud-init.yaml` and update password, example file
@@ -82,7 +82,7 @@ timedatectl set-timezone Asia/Kolkata
     npm install -g @angular/cli
     ```
 
-# postgrest setup 
+## postgrest setup:
 * Steps:
 ```
 apt update && sudo apt upgrade -y
@@ -106,7 +106,7 @@ psql -U postgres -h localhost
 
 ```
 
-# Setup tailscale:
+## Setup tailscale:
 * Private vpn setup for remote access.
    * Install tailscale: `curl -fsSL https://tailscale.com/install.sh | sh`
    * Up tailscale: `tailscale up`
@@ -154,3 +154,25 @@ psql -U postgres -h localhost
 * Connect to the pi-4 via keyboard and mmonitor.
 * Execute `sudo shutdown -h now`.
 * Unplug system.
+
+
+## Fixed ip for server:
+* Execute `ip addr show eth0` for current IP address of server(via ethernet): `inet <IP>/24`
+* Execute `ip route` for gatewayIP: `default via <gatewayIP> dev eth0
+* Edit netplan config: `/etc/netplan/<config>.yaml`
+
+   ```
+         dhcp4: true
+         addresses:
+          - <STATIC_IP>/24
+         routes:
+          - to: default
+            via: <GATEWAY_IP>
+
+   ```
+* From router config choose STATIC_IP, between range and not allocated.
+* Check config via `netplay generate`
+* Apply changes `netplan apply`
+* Set hostmane of server.
+* Install `apt install avahi-daemon` in server.
+* Reboot and server will be accessable via `hostname.local`
