@@ -1,8 +1,10 @@
 """Service logic for db connection check.
 Does API calls to repository layer
 """
-from sqlalchemy.orm import Session
+
 import logging
+
+from sqlalchemy.orm import Session
 
 from server_rest.repository.db_test import get_db_version
 

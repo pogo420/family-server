@@ -1,5 +1,4 @@
-"""File containing constants or utility functions for the source
-"""
+"""File containing constants or utility functions for the source"""
 
 """Logging related constants"""
 MAX_LOG_SIZE = 5 * 1024 * 1024  # 5 MB

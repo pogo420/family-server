@@ -1,0 +1,41 @@
+# This file is used to configure pre-commit hooks for the complete project.
+repos:
+  # ==========================================
+  # Generic hooks for both Rest server and Angular front-end
+  # ==========================================
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+
+      - id: trailing-whitespace
+        files: ^(server-rest/server_rest/)
+
+      - id: end-of-file-fixer
+        files: ^(server-rest/server_rest/)
+
+      - id: check-yaml
+        files: ^(server-rest/server_rest/).*\.(yml|yaml)$
+
+      - id: check-json
+        files: ^(server-rest/server_rest/).*\.json$
+
+  # ==========================================
+  # Rest server hooks
+  # ==========================================
+
+  - repo: local
+    hooks:
+
+      - id: ruff-rest-server
+        name: ruff-rest-server
+        entry: bash -c 'cd server-rest && poetry run ruff check --fix server_rest'
+        language: system
+        pass_filenames: false
+        files: ^server-rest/server_rest/.*\.py$
+
+      - id: ruff-format-rest-server
+        name: ruff-format-rest-server
+        entry: bash -c 'cd server-rest && poetry run ruff format server_rest'
+        language: system
+        pass_filenames: false
+        files: ^server-rest/server_rest/.*\.py$
