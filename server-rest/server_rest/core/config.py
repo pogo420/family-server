@@ -11,6 +11,11 @@ class Settings(BaseSettings):
     APP_NAME: str
     DB_URL: str
     ENABLE_DEBUG: bool
+    MQTT_CLIENT_ID: str
+    MQTT_HOST: str
+    MQTT_PORT: int
+    MQTT_USERNAME: str
+    MQTT_PASSWORD: str
 
     model_config = SettingsConfigDict(env_file=".env")
 
