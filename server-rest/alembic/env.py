@@ -9,7 +9,7 @@ from server_rest.core.config import get_settings
 from server_rest.db.database import Base
 from server_rest.models.event_tracker import EventTracker  # noqa: F401
 from server_rest.models.asset_tracker import AssetTracker  # noqa: F401
-from server_rest.models.weather_data import WeatherReadings  # noqa: F401
+from server_rest.models.weather import WeatherReadings  # noqa: F401
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
