@@ -30,8 +30,8 @@ jobs:
 
       - uses: docker/build-push-action@v6
         with:
-          context: ./rest
-          file: ./rest/Dockerfile
+          context: ./server-rest
+          file: ./server-rest/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |

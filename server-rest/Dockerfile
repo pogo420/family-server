@@ -45,6 +45,10 @@ RUN pip install --no-cache-dir /tmp/*.whl && \
 # Startup script
 COPY --from=builder /build/start.sh /start.sh
 
+# Alembic files
+COPY --from=builder /build/alembic.ini .
+COPY --from=builder /build/alembic ./alembic
+
 RUN chmod +x /start.sh
 
 USER appuser
