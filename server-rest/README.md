@@ -10,6 +10,11 @@
 poetry run uvicorn server_rest.main:app --reload
 ```
 
+## Container local testing:
+
+* Build: `podman build -t hm-rest:local .`
+* Run: `podman run --rm --name home-server-rest --env-file rest.env -p 8000:8000 hm-rest:local`
+
 ## For server deployment(First time):
 
 * Locally create the wheel file via `poetry build`
