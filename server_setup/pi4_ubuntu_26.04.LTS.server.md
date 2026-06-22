@@ -101,6 +101,19 @@ ALTER USER postgres PASSWORD 'yourpassword';
 # local   all             all                                     md5
 vim /etc/postgresql/18/main/pg_hba.conf
 
+# Make listen_addresses='*'
+vim /etc/postgresql/18/main/postgresql.conf
+
+# Get the podman compose subnet IP and add in pg_hba
+podman network inspect <folder_containing_compose>_default
+
+# Updae following in the end
+# host    all    all    <subnet>    scram-sha-256
+vim /etc/postgresql/18/main/pg_hba.conf
+
+# restart postgres
+systemctl restart postgresql
+
 # testing connection
 psql -U postgres -h localhost
 

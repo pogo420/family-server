@@ -1,0 +1,14 @@
+services:
+  migrate:
+    image: <image_path>
+    env_file:
+      - .env_rest
+    command: alembic upgrade head
+
+  rest:
+    image: <image_path>
+    env_file:
+      - .env_rest
+    restart: unless-stopped
+    ports:
+      - "8000:8000"

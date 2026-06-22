@@ -15,35 +15,37 @@ poetry run uvicorn server_rest.main:app --reload
 * Build: `podman build -t hm-rest:local .`
 * Run: `podman run --rm --name home-server-rest --env-file rest.env -p 8000:8000 hm-rest:local`
 
-## For server deployment(First time):
+## Server deployment:
 
-* Locally create the wheel file via `poetry build`
-* Scp following files to server `/opt/server_rest` via home directory
-   * execute: `scp -r alembic alembic.ini server_rest.service start.sh`
-* Create virtual env
-* Install wheel.
-* Create log folder.
-* Change ownership ang group of folder: `chown -R rest_user:rest_group /opt/server_rest`
-* Give 755 permission to the log folder and start.sh
-* Service first time setup:
+* copy the compose file in /opt/server_rest
+* copy the env file in /opt/server_rest
+* Set up env files.
+* Make sure compose subnet is updated in DB [configs](../server_setup/pi4_ubuntu_26.04.LTS.server.md#postgrest-setup).
+* Host for non container SW in rest env: `host.containers.internal`
+* Above means The host machine running the container. It translates to server host.
+* Do the following podman steps:
+
+```
+podman compose ps
+# Get all containers
+podman compose pull
+# migration
+podman compose run --rm migrate
+```
+* copy the service file(first time) to /etc/systemd/system/server_rest.service
+* First time service commands:
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable server_rest
 sudo systemctl start server_rest
 ```
-
-## For server deployment(Recurring):
-
-* Locally create the wheel file via `poetry build`
-* Scp the wheel file to server `/opt/server_rest`
-* Scp `alembic.ini` and `alembic` folder.
-* Activate virtual env
-* Service stop: `sudo systemctl stop server_rest`
-* uninstall old wheel: `pip uninstall server_rest`
-* Install latest wheel.
-* Execute: `alembic upgrade head`
-* Service start: `sudo systemctl start server_rest`
-
+* During changes:
+```
+sudo systemctl stop server_rest
+# Do all changes
+sudo systemctl daemon-reload
+sudo systemctl start server_rest
+```
 
 ## Nginix configurations(First time)
 * Nginix configuration changes(First time setup, no required for source changes):
