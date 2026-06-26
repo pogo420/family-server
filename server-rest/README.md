@@ -19,7 +19,7 @@ poetry run uvicorn server_rest.main:app --reload
 
 * copy the compose file in /opt/server_rest
 * copy the env file in /opt/server_rest
-* Set up env files.
+* copy the service file in /opt/server_rest
 * Make sure compose subnet is updated in DB [configs](../server_setup/pi4_ubuntu_26.04.LTS.server.md#postgrest-setup).
 * Host for non container SW in rest env: `host.containers.internal`
 * Above means The host machine running the container. It translates to server host.
@@ -35,6 +35,7 @@ podman compose run --rm migrate
 * copy the service file(first time) to /etc/systemd/system/server_rest.service
 * First time service commands:
 ```
+podman network create home-server
 sudo systemctl daemon-reload
 sudo systemctl enable server_rest
 sudo systemctl start server_rest

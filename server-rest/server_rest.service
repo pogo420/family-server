@@ -8,7 +8,7 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-WorkingDirectory=/opt/home-server
+WorkingDirectory=/opt/server_rest
 
 ExecStart=/usr/bin/podman compose up -d rest
 ExecStop=/usr/bin/podman compose down

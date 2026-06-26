@@ -1,0 +1,20 @@
+services:
+  migrate:
+    image: ghcr.io/pogo420/moder-rest:latest
+    env_file:
+      - .env_rest
+    command: alembic upgrade head
+
+  rest:
+    image: ghcr.io/pogo420/moder-rest:latest
+    container_name: moder-rest
+    env_file:
+      - .env_rest
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+
+networks:
+  default:
+    external: true
+    name: home-server

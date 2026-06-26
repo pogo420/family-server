@@ -12,44 +12,31 @@ UI for family server.
 
 * Angular: 21
 
-## Deploy in server
-* clone the repo.
-* navigate to server-ui
-* Execute following:
-```
-        su - root
-        npm install
-        ng build --configuration production
-        # delete old files if present 
-        rm -rf /var/www/html/server-ui/*
-        cp -r /home/server_manager/family-server/server-ui/dist/server-ui/browser/*  /var/www/html/server-ui
-```
 
-* Nginix configuration changes(First time setup, no required for source changes):
-```
-        su - root
-        cd /etc/nginx/sites-available
-        cp default server-master
-        # File server-master from /var/www/html to root /var/www/html/server-ui
-        ln -s /etc/nginx/sites-available/server-master /etc/nginx/sites-enabled/
-```
-* Reload config if configuration changes are done
-```
-        sudo nginx -t
-        sudo systemctl reload nginx
-```
-* Sample nginix configuration:
-```
-server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+## Deploy in server:
 
-        server_name _;
+* copy the compose file in /opt/server_ui
+* copy the env file in /opt/server_ui
+* copy the service file in /opt/server_ui
+* Do the following podman steps:
 
-        location / {
-                root /var/www/html/server-ui;
-                index index.html index.htm index.nginx-debian.html;
-                try_files $uri $uri/ =404;
-        }
-}
+```
+podman compose ps
+# Get all containers
+podman compose pull
+```
+* copy the service file(first time) to /etc/systemd/system/server_ui.service
+* First time service commands:
+```
+podman network create home-server
+sudo systemctl daemon-reload
+sudo systemctl enable server_ui
+sudo systemctl start server_ui
+```
+* During changes:
+```
+sudo systemctl stop server_ui
+# Do all changes
+sudo systemctl daemon-reload
+sudo systemctl start server_ui
 ```

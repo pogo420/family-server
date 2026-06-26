@@ -1,0 +1,20 @@
+# Add the content in /etc/systemd/system/server_ui.service
+
+[Unit]
+Description=Home Server UI Containers
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/server_ui
+
+ExecStart=/usr/bin/podman compose up -d ui
+ExecStop=/usr/bin/podman compose down
+ExecReload=/usr/bin/podman compose up -d ui
+
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target

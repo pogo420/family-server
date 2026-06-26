@@ -1,0 +1,14 @@
+services:
+  ui:
+    image: ghcr.io/pogo420/moder-ui:latest
+    container_name: ui
+
+    restart: unless-stopped
+
+    ports:
+      - "80:80"
+
+networks:
+  default:
+    external: true
+    name: home-server
