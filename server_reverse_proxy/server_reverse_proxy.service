@@ -1,0 +1,20 @@
+# Add the content in /etc/systemd/system/server_reverse_proxy.service
+
+[Unit]
+Description=Home Server Reverse Proxy Containers
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/server_reverse_proxy
+
+ExecStart=/usr/bin/podman compose up -d proxy
+ExecStop=/usr/bin/podman compose down
+ExecReload=/usr/bin/podman compose up -d proxy
+
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target

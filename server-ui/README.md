@@ -16,8 +16,8 @@ UI for family server.
 ## Deploy in server:
 
 * copy the compose file in /opt/server_ui
-* copy the env file in /opt/server_ui
 * copy the service file in /opt/server_ui
+* copy the deploy.sh file in /opt/server_ui
 * Do the following podman steps:
 
 ```
@@ -38,5 +38,6 @@ sudo systemctl start server_ui
 sudo systemctl stop server_ui
 # Do all changes
 sudo systemctl daemon-reload
+cd /opt/server_ui; podman compose pull
 sudo systemctl start server_ui
 ```
