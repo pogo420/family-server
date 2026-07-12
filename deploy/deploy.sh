@@ -13,13 +13,13 @@ kubectl create namespace "${NAMESPACE}" \
     --dry-run=client -o yaml | kubectl apply -f -
 
 echo "Updating ConfigMap..."
-kubectl create configmap rest-config \
+kubectl create configmap moder-rest-config \
     --from-env-file=/opt/server_deploy/.env.config \
     -n ${NAMESPACE} \
     --dry-run=client -o yaml | kubectl apply -f -
 
 echo "Updating Secret..."
-kubectl create secret generic rest-secret \
+kubectl create secret generic moder-rest-secret \
     --from-env-file=/opt/server_deploy/.env.secret \
     -n ${NAMESPACE} \
     --dry-run=client -o yaml | kubectl apply -f -
@@ -40,6 +40,10 @@ echo "Deploying Proxy..."
 kubectl apply -f k8s/proxy/ -n ${NAMESPACE} 
 
 echo "Waiting for rollout..."
+
+kubectl rollout restart deployment/rest -n ${NAMESPACE}
+kubectl rollout restart deployment/ui -n ${NAMESPACE}
+kubectl rollout restart deployment/proxy -n ${NAMESPACE}
 
 kubectl rollout status deployment/rest -n ${NAMESPACE}
 kubectl rollout status deployment/ui -n ${NAMESPACE}
