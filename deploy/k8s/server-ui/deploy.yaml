@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: ui
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: moder-ui
+
+  template:
+    metadata:
+      labels:
+        app: moder-ui
+
+    spec:
+      containers:
+        - name: ui
+          image: ghcr.io/pogo420/moder-ui:latest
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 80
