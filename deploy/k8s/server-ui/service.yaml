@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: moder-ui
+
+
+spec:
+  selector:
+    app: moder-ui
+
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

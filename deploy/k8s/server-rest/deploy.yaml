@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: rest
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: moder-rest
+
+  template:
+    metadata:
+      labels:
+        app: moder-rest
+
+    spec:
+      containers:
+        - name: rest
+          image: ghcr.io/pogo420/moder-rest:latest
+          imagePullPolicy: Always
+          
+          envFrom:
+          - configMapRef:
+              name: moder-rest-config
+
+          - secretRef:
+              name: moder-rest-secret
+
+          ports:
+            - containerPort: 8000
